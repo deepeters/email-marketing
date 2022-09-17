@@ -1,0 +1,15 @@
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\bin\Debug\net6.0\EmailMarketing.exe
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\bin\Debug\net6.0\EmailMarketing.deps.json
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\bin\Debug\net6.0\EmailMarketing.runtimeconfig.json
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\bin\Debug\net6.0\EmailMarketing.dll
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\bin\Debug\net6.0\EmailMarketing.pdb
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.csproj.AssemblyReference.cache
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.AssemblyInfoInputs.cache
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.AssemblyInfo.cs
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.csproj.CoreCompileInputs.cache
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.dll
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\refint\EmailMarketing.dll
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.pdb
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\EmailMarketing.genruntimeconfig.cache
+C:\Users\Dennis.Njenga\source\repos\EmailMarketing\obj\Debug\net6.0\ref\EmailMarketing.dll
