@@ -16,6 +16,15 @@ namespace Viagogo
         public string Name { get; set; }
         public string City { get; set; }
     }
+
+    //Create a model
+    public class City
+    {
+        public string CityName  { get; set; }
+        public int Distance { get; set; }
+        public string Event { get; set; }
+    }
+
     public class Solution
     {
         static void Main(string[] args)
@@ -38,42 +47,43 @@ namespace Viagogo
                 City = "New York" 
             };
 
-            //Retrieve from events using customer object
-            
+       
+            //var nearCities = GetDistance("New York", "Boston");
 
-            //var query = from result in customer
-            //            where result.Contains("New York")
-            //            select result;
+            //    var cityEvents = events.Where(e => e.City == customer.City).ToList();
 
-            var nearCities = GetDistance("New York", "Boston");
-
-            if (nearCities == 0)
-            {
-                var cityEvents = events.Where(e => e.City == customer.City).ToList();
-
-                foreach (var item in cityEvents)
-                {
-                    AddToEmail(customer, item);
-                }
-            }
+            //    foreach (var item in cityEvents)
+            //    {
+            //        AddToEmail(customer, item);
+            //    }
+            //}
 
             // 1. TASK
 
-            var store_dict = new Dictionary<string, string>() { };
 
-            var Cities = events.Select(x => x.City).ToList();
+            var cityNears = new List<City>();
+
+
+
+            var Cities = events.Select(x => new
+           City {
+                CityName=x.City,
+                Distance=0,
+                Event=x.Name
+
+            }).Distinct().ToList();
 
             foreach (var city in Cities)
             {
-                var k = GetDistance("New York", city).ToString();
-                store_dict[city] = k;
+                cityNears.Add(new City {CityName= city.CityName,Event=city.Event,Distance= GetDistance("New York", city.CityName)});
             }
 
-            
+            var nearest = cityNears.OrderBy(x => x.Distance).Take(5);
 
-            Console.Out.WriteLine(store_dict);
-
-
+            foreach (var item in nearest)
+            {
+                AddToEmail(customer, new Event {Name= item.Event,City=item.CityName });
+            }
 
             //Improvement: Send a single email with all events rather than multiple emails for each event.
 
@@ -82,7 +92,7 @@ namespace Viagogo
             * Just call AddToEmail(customer, event) for each event you think they should get
             */
 
-            
+
         }
         // You do not need to know how these methods work
         static void AddToEmail(Customer c, Event e, int? price = null)
