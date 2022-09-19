@@ -39,17 +39,41 @@ namespace Viagogo
             };
 
             //Retrieve from events using customer object
-            var custEvents = events.Where(e => e.City == customer.City).ToList();
+            
 
             //var query = from result in customer
             //            where result.Contains("New York")
             //            select result;
 
-            // 1. TASK
-            foreach (var item in custEvents)
+            var nearCities = GetDistance("New York", "Boston");
+
+            if (nearCities == 0)
             {
-                AddToEmail(customer, item);
+                var cityEvents = events.Where(e => e.City == customer.City).ToList();
+
+                foreach (var item in cityEvents)
+                {
+                    AddToEmail(customer, item);
+                }
             }
+
+            // 1. TASK
+
+            var store_dict = new Dictionary<string, string>();
+
+            var Cities = events.Select(x => x.City).ToList();
+
+            foreach (var city in Cities)
+            {
+                var k = GetDistance("New York", city).ToString();
+                store_dict[city] = k;
+            }
+
+            
+
+            Console.Out.WriteLine(store_dict);
+
+
 
             //Improvement: Send a single email with all events rather than multiple emails for each event.
 
@@ -57,6 +81,8 @@ namespace Viagogo
             * We want you to send an email to this customer with all events in their city
             * Just call AddToEmail(customer, event) for each event you think they should get
             */
+
+            
         }
         // You do not need to know how these methods work
         static void AddToEmail(Customer c, Event e, int? price = null)
