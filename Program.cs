@@ -59,7 +59,7 @@ namespace Viagogo
 
             // 1. TASK
 
-            var store_dict = new Dictionary<string, string>();
+            var store_dict = new Dictionary<string, string>() { };
 
             var Cities = events.Select(x => x.City).ToList();
 
