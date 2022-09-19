@@ -47,42 +47,32 @@ namespace Viagogo
                 City = "New York" 
             };
 
-       
-            //var nearCities = GetDistance("New York", "Boston");
-
-            //    var cityEvents = events.Where(e => e.City == customer.City).ToList();
-
-            //    foreach (var item in cityEvents)
-            //    {
-            //        AddToEmail(customer, item);
-            //    }
-            //}
-
-            // 1. TASK
-
 
             var cityNears = new List<City>();
 
 
 
             var Cities = events.Select(x => new
-           City {
-                CityName=x.City,
-                Distance=0,
-                Event=x.Name
+            City {
+                CityName = x.City,
+                Distance = 0,
+                Event = x.Name
 
             }).Distinct().ToList();
 
             foreach (var city in Cities)
             {
-                cityNears.Add(new City {CityName= city.CityName,Event=city.Event,Distance= GetDistance("New York", city.CityName)});
+                cityNears.Add(new City { 
+                    CityName= city.CityName, 
+                    Event = city.Event, 
+                    Distance = GetDistance("New York", city.CityName)});
             }
 
             var nearest = cityNears.OrderBy(x => x.Distance).Take(5);
 
             foreach (var item in nearest)
             {
-                AddToEmail(customer, new Event {Name= item.Event,City=item.CityName });
+                AddToEmail(customer, new Event {Name = item.Event, City = item.CityName });
             }
 
             //Improvement: Send a single email with all events rather than multiple emails for each event.
