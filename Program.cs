@@ -78,9 +78,9 @@ namespace Viagogo
             foreach (var city in Cities)
             {
                 cityCheap.Add(new City {
-                    CityName= city.CityName,
-                    Event=city.Event,
-                    Distance= GetDistance("New York", city.CityName),
+                    CityName = city.CityName,
+                    Event = city.Event,
+                    Distance = GetDistance("New York", city.CityName),
                     Price = GetPrice(city.Price)
                 });
             }
