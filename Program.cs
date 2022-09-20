@@ -23,6 +23,7 @@ namespace Viagogo
         public string CityName  { get; set; }
         public int Distance { get; set; }
         public string Event { get; set; }
+        public int Price { get; set; }
     }
 
     public class Solution
@@ -61,26 +62,32 @@ namespace Viagogo
             // 1. TASK
 
 
-            var cityNears = new List<City>();
+            var cityCheap = new List<City>();
 
 
 
             var Cities = events.Select(x => new
-           City {
+            City {
                 CityName=x.City,
                 Distance=0,
-                Event=x.Name
+                Event=x.Name,
+                Price = 0
 
             }).Distinct().ToList();
 
             foreach (var city in Cities)
             {
-                cityNears.Add(new City {CityName= city.CityName,Event=city.Event,Distance= GetDistance("New York", city.CityName)});
+                cityCheap.Add(new City {
+                    CityName= city.CityName,
+                    Event=city.Event,
+                    Distance= GetDistance("New York", city.CityName),
+                    Price = GetPrice(city.Price)
+                });
             }
 
-            var nearest = cityNears.OrderBy(x => x.Distance).Take(5);
+            var cheapest = cityCheap.OrderBy(x => x.Price).Take(5);
 
-            foreach (var item in nearest)
+            foreach (var item in cheapest)
             {
                 AddToEmail(customer, new Event {Name= item.Event,City=item.CityName });
             }
