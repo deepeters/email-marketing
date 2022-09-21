@@ -62,9 +62,17 @@ namespace Viagogo
 
                 }).Distinct().ToList();
 
-                foreach (var city in Cities)
+                if (ShouldRetryHandler.shouldRetry())
                 {
-                    cityNears.Add(new City { CityName = city.CityName, Event = city.Event, Distance = GetDistance("New York", city.CityName) });
+                    foreach (var city in Cities)
+                    {
+                        cityNears.Add(new City
+                        {
+                            CityName = city.CityName,
+                            Event = city.Event,
+                            Distance = GetDistance("New York", city.CityName)
+                        });
+                    }
                 }
 
                 var nearest = cityNears.OrderBy(x => x.Distance).Take(5);
@@ -76,7 +84,7 @@ namespace Viagogo
             }
             catch (Exception e)
             {
-                Console.Out.WriteLine(e.ToString(), "Get Distance fetch request Timed Out");
+                Console.WriteLine(e.ToString());
             }
 
 
@@ -114,6 +122,33 @@ namespace Viagogo
             }
             return result;
         }
+
+        internal class ShouldRetryHandler
+        {
+            private static int RETRIES_MAX_NUMBER = 3;
+            private static int numberTrys;
+
+            public static bool shouldRetry()
+            {
+                var statusRetry = false;
+
+                if (numberTrys < RETRIES_MAX_NUMBER)
+                {
+                    numberTrys++;
+                    statusRetry = true;
+                    //Increment the number of trials to fetch the data from the GetDistance() API
+                }
+
+                else
+                {
+                    statusRetry = false;
+                    //Reached retry number limit
+                }
+
+                return statusRetry;
+            }
+        }
+
     }
 }
 /*
