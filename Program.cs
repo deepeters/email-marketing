@@ -84,10 +84,10 @@ namespace Viagogo
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.ToString());
+                ShouldRetryHandler.shouldRetry();
+
+                Console.WriteLine(e.ToString(), "API Call failed");
             }
-
-
 
         }
         // You do not need to know how these methods work
