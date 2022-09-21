@@ -81,7 +81,7 @@ namespace Viagogo
                     CityName = city.CityName,
                     Event = city.Event,
                     Distance = GetDistance("New York", city.CityName),
-                    Price = GetPrice(city.Price)
+                    Price = GetPrice(new Event {Name=city.Event,City=city.CityName })
                 });
             }
 
@@ -89,15 +89,13 @@ namespace Viagogo
 
             foreach (var item in cheapest)
             {
-                AddToEmail(customer, new Event {Name= item.Event,City=item.CityName });
+                AddToEmail(customer, new Event {
+                    Name = item.Event,
+                    City = item.CityName 
+                });
             }
 
             //Improvement: Send a single email with all events rather than multiple emails for each event.
-
-            /*
-            * We want you to send an email to this customer with all events in their city
-            * Just call AddToEmail(customer, event) for each event you think they should get
-            */
 
 
         }
