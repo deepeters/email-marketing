@@ -78,8 +78,6 @@ namespace Viagogo
             * We want you to send an email to this customer with all events in their city
             * Just call AddToEmail(customer, event) for each event you think they should get
             */
-
-
         }
         // You do not need to know how these methods work
         static void AddToEmail(Customer c, Event e, int? price = null)
