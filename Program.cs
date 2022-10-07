@@ -47,10 +47,7 @@ namespace Viagogo
                 City = "New York" 
             };
 
-
             var cityNears = new List<City>();
-
-
 
             var Cities = events.Select(x => new
             City {
